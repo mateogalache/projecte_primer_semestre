@@ -13,11 +13,9 @@ public abstract class Character {
     @SerializedName(value = "spirit") private int spirit;
     @SerializedName(value = "class") private String tipusPersonatge;
 
-    @Expose(deserialize = false, serialize = false) private boolean conscient;
+     private transient int actualLifePoints;
 
-    @Expose(deserialize = false, serialize = false) private int actualLifePoints;
-
-    @Expose(deserialize = false, serialize = false) private int totalLifePoints;
+     private transient int totalLifePoints;
 
 
     /**
@@ -159,22 +157,6 @@ public abstract class Character {
      */
     public int getTotalLifePoints() {
         return totalLifePoints;
-    }
-
-    /**
-     * Function to get if the character is conscient
-     * @return boolean conscient or not
-     */
-    public boolean isConscient() {
-        return conscient;
-    }
-
-    /**
-     * Function to set if the character is conscient
-     * @param conscient boolean conscient or not
-     */
-    public void setConscient(boolean conscient) {
-        this.conscient = conscient;
     }
 
     /**

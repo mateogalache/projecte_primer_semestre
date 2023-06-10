@@ -6,10 +6,7 @@
     "body": 1,
     "mind": 1,
     "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Elendil",
@@ -18,10 +15,7 @@
     "body": 1,
     "mind": 3,
     "spirit": 2,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Fëanor",
@@ -30,10 +24,7 @@
     "body": 1,
     "mind": 1,
     "spirit": 2,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Finrod Felagund",
@@ -42,10 +33,7 @@
     "body": 3,
     "mind": 3,
     "spirit": 0,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Galadriel",
@@ -54,10 +42,7 @@
     "body": -1,
     "mind": 2,
     "spirit": 2,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Hellboy",
@@ -66,10 +51,7 @@
     "body": 0,
     "mind": -1,
     "spirit": 2,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Jinx",
@@ -78,10 +60,7 @@
     "body": -1,
     "mind": 2,
     "spirit": 2,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Maedhros",
@@ -90,10 +69,7 @@
     "body": 0,
     "mind": -1,
     "spirit": 2,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Percival Fredrickstein von Musel Klossowski de Rolo III",
@@ -102,10 +78,7 @@
     "body": 1,
     "mind": -1,
     "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Vi",
@@ -114,10 +87,7 @@
     "body": 0,
     "mind": 2,
     "spirit": -1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Meme",
@@ -126,10 +96,7 @@
     "body": 1,
     "mind": 2,
     "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Matreo",
@@ -138,10 +105,7 @@
     "body": 1,
     "mind": 1,
     "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
   },
   {
     "name": "Mateoelmejor",
@@ -150,9 +114,33 @@
     "body": 2,
     "mind": 1,
     "spirit": 0,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
+    "class": "adventurer"
+  },
+  {
+    "name": "Hgf",
+    "player": "jhg",
+    "xp": 200,
+    "body": 0,
+    "mind": 1,
+    "spirit": 1,
+    "class": "adventurer"
+  },
+  {
+    "name": "Nhfgufd",
+    "player": "khgfurtyd",
+    "xp": 700,
+    "body": 1,
+    "mind": 1,
+    "spirit": 1,
+    "class": "adventurer"
+  },
+  {
+    "name": "Gdfgdf",
+    "player": "dfgdfggf",
+    "xp": 300,
+    "body": 1,
+    "mind": 1,
+    "spirit": 0,
+    "class": "adventurer"
   }
 ]
