@@ -6,13 +6,13 @@ public class Dice {
     private final String name;
     private final int nCares;
 
+    /**
+     * Consstructor of the dice
+     * @param name name of the dice (D + number)
+     * @param nCares max number
+     */
     public Dice(String name, int nCares){
         this.name = name;
-        this.nCares = nCares;
-    }
-
-    public Dice(int nCares) {
-        this.name = "D" + nCares;
         this.nCares = nCares;
     }
 

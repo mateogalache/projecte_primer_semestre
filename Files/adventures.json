@@ -661,5 +661,196 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Strolling through Mordor",
+    "combats": [
+      {
+        "combatNumber": 0,
+        "monsters": [
+          {
+            "name": "Orc",
+            "challenge": "Minion",
+            "experience": 3,
+            "hitPoints": 9,
+            "initiative": -1,
+            "damageDice": "d6",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          2
+        ]
+      },
+      {
+        "combatNumber": 1,
+        "monsters": [
+          {
+            "name": "Vampire",
+            "challenge": "Lieutenant",
+            "experience": 24,
+            "hitPoints": 24,
+            "initiative": 2,
+            "damageDice": "d10",
+            "damageType": "Magical"
+          },
+          {
+            "name": "Goblin",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 5,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "name": "elopol",
+    "combats": [
+      {
+        "combatNumber": 0,
+        "monsters": [
+          {
+            "name": "Orc",
+            "challenge": "Minion",
+            "experience": 3,
+            "hitPoints": 9,
+            "initiative": -1,
+            "damageDice": "d6",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Morgoth",
+            "challenge": "Boss",
+            "experience": 168,
+            "hitPoints": 100,
+            "initiative": 4,
+            "damageDice": "d20",
+            "damageType": "Psychical"
+          }
+        ],
+        "monstersQuantity": [
+          5,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "name": "holalalala",
+    "combats": [
+      {
+        "combatNumber": 0,
+        "monsters": [
+          {
+            "name": "Caracharoth",
+            "challenge": "Lieutenant",
+            "experience": 38,
+            "hitPoints": 39,
+            "initiative": 3,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "name": "fdgdfg",
+    "combats": [
+      {
+        "combatNumber": 0,
+        "monsters": [
+          {
+            "name": "Caracharoth",
+            "challenge": "Lieutenant",
+            "experience": 38,
+            "hitPoints": 39,
+            "initiative": 3,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          1
+        ]
+      },
+      {
+        "combatNumber": 1,
+        "monsters": [
+          {
+            "name": "Caracharoth",
+            "challenge": "Lieutenant",
+            "experience": 38,
+            "hitPoints": 39,
+            "initiative": 3,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "name": "gfdsgdfgdf",
+    "combats": [
+      {
+        "combatNumber": 0,
+        "monsters": [
+          {
+            "name": "Glaurung the Great Worm",
+            "challenge": "Boss",
+            "experience": 140,
+            "hitPoints": 81,
+            "initiative": 3,
+            "damageDice": "d20",
+            "damageType": "Psychical"
+          },
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          1,
+          3
+        ]
+      },
+      {
+        "combatNumber": 1,
+        "monsters": [
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ],
+        "monstersQuantity": [
+          10
+        ]
+      }
+    ]
   }
 ]

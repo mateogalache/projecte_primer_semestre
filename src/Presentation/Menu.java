@@ -27,7 +27,7 @@ public class Menu {
     }
 
     public void dataSuccesfull(){
-        System.out.println("Data was successfully loaded.");
+        System.out.println("Data was successfully loaded.\n");
     }
 
     public void errorReader(boolean errorCharacter,boolean errorAdventure, boolean errorMonsters){
@@ -42,13 +42,17 @@ public class Menu {
         }
     }
 
-    public void showMenu(){
+    public void showMenu(int num_chararcters){
         System.out.println("The tavern keeper looks at you and says:");
         System.out.println("\"Welcome adventurer! How can I help you?\"\n");
         System.out.println("\t1) Character creation");
         System.out.println("\t2) List characters");
         System.out.println("\t3) Create an adventure");
-        System.out.println("\t4) Start an adventure");
+        if(num_chararcters < 3){
+            System.out.println("\t4) Start an adventure (disabled: create 3 characters first)");
+        }else{
+            System.out.println("\t4) Start an adventure");
+        }
         System.out.println("\t5) Exit\n");
 
     }
@@ -63,7 +67,7 @@ public class Menu {
         System.out.println("\nTavern keeper: \"Are you leaving already? See you soon, adventurer.\"");
     }
 
-    public void promptTavernKeeper() {
+    private void promptTavernKeeper() {
         System.out.print("Tavern keeper: ");
     }
 
@@ -124,9 +128,10 @@ public class Menu {
 
     public String askPlayerName(String name) {
         Scanner scanner = new Scanner(System.in);
+        nextLine();
         promptTavernKeeper();
-        System.out.println("Hello, " + name + ", be welcome.");
-        System.out.println("And now, if I may break the fourth wall, who is your Player?");
+        System.out.println("\"Hello, " + name + ", be welcome.\"");
+        System.out.println("\"And now, if I may break the fourth wall, who is your Player?\"");
         System.out.print("\n-> Enter player's name: ");
 
         String player = scanner.nextLine();
@@ -141,8 +146,8 @@ public class Menu {
     public int askLevel() {
         System.out.println();
         promptTavernKeeper();
-        System.out.println("I see, I see...");
-        System.out.println("Now, are you an experienced adventurer? ");
+        System.out.println("\"I see, I see...\"");
+        System.out.println("\"Now, are you an experienced adventurer?\"");
 
         int level = askOptionLevel();
 
@@ -164,22 +169,25 @@ public class Menu {
     public void generatingStats(int level) {
         System.out.println();
         promptTavernKeeper();
-        System.out.println("Oh, so you are level " + level + "!");
-        System.out.println("Great, let me take a closer look at you...");
+        System.out.println("\"Oh, so you are level " + level + "!\"");
+        System.out.println("\"Great, let me take a closer look at you...\"");
         System.out.println("\nGenerating your stats...\n");
     }
 
     public void showSingleStat(String string, int firstValue, int secondValue) {
         int sum = firstValue + secondValue;
-        System.out.println(string + ":   You rolled " + sum + " (" + firstValue + " and "+ secondValue + ").");
+        String firstLetter = string.substring(0, 1).toUpperCase();
+        String restOfString = string.substring(1);
+
+        System.out.println(firstLetter+restOfString + ":   You rolled " + sum + " (" + firstValue + " and "+ secondValue + ").");
     }
 
     public void listStats(int body, int mind, int spirit) {
-
         System.out.println("\nYour stats are:");
         System.out.println(" -Body: " + body);
         System.out.println(" -Mind: " + mind);
         System.out.println(" -Spirit: " + spirit);
+        nextLine();
     }
 
     public void characterCreated(String name){
@@ -189,18 +197,19 @@ public class Menu {
     public String listCharactersMessage() {
         Scanner scanner = new Scanner(System.in);
         promptTavernKeeper();
-        System.out.println("Lads! The Boss wants to see you, come here!");
-        System.out.println("Who Piques your Interest?\n");
+        System.out.println("\"Lads! The Boss wants to see you, come here!\"");
+        System.out.println("\"Who Piques your Interest?\"\n");
         System.out.print("-> Enter the name of the Player to filter: ");
         return scanner.nextLine();
     }
 
 
     public void showAllCharacters(List<String> allCharacters) {
-        System.out.println("You watch as all adventurers get up from their charis and approach you.");
+        System.out.println("\nYou watch as all adventurers get up from their charis and approach you.\n");
         for(int i = 0;i<allCharacters.size();i++){
             System.out.println("\t" + (i+1) + ". " + allCharacters.get(i));
         }
+        System.out.println("\n\t0. Back\n");
     }
 
     public void showSomeCharacters(List<String> someCharacters){
@@ -215,26 +224,28 @@ public class Menu {
         int option;
         do {
             option = askOptionCharacter(size);
-        } while (option > size || option < 1);
+        } while (option > size || option < 0);
 
         return option;
     }
 
     private int askOptionCharacter(int size){
         System.out.print("Who would you like to meet [0.." + size + "]: ");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return askOption(1,size);
     }
 
     public void showCharacterStats(Character character) {
-        System.out.println("\t* Name:\t" + character.getNomPersonatge());
-        System.out.println("\t* Player:\t" + character.getNomJugador());
-        System.out.println("\t* Class:\t" + character.getTipusPersonatge());
-        System.out.println("\t* Level:\t" + character.getNivellInicial());
-        System.out.println("\t* XP:\t" + character.getXpPoints());
-        System.out.println("\t* Body:\t" + character.getBody());
-        System.out.println("\t* Mind:\t" + character.getMind());
-        System.out.println("\t* Spirit:\t" + character.getSpirit());
+        nextLine();
+        promptTavernKeeper();
+        System.out.println("\"Hey " + character.getNomPersonatge() + " get here; the boss wants to see you!\"\n");
+        System.out.println("* Name:\t\t" + character.getNomPersonatge());
+        System.out.println("* Player:\t" + character.getNomJugador());
+        System.out.println("* Class:\t" + character.getTipusPersonatge());
+        System.out.println("* Level:\t" + character.getNivellInicial());
+        System.out.println("* XP:\t\t" + character.getXpPoints());
+        System.out.println("* Body:\t\t" + character.getBody());
+        System.out.println("* Mind:\t\t" + character.getMind());
+        System.out.println("* Spirit:\t" + character.getSpirit());
     }
 
 
@@ -248,6 +259,7 @@ public class Menu {
     }
 
     public void characterDeleted(String nameCharacter) {
+        nextLine();
         promptTavernKeeper();
         System.out.println("\"I'm sorry kiddo, but you have to leave.\"\n");
         System.out.println("Character " + nameCharacter + " left the Guild.");
@@ -297,8 +309,9 @@ public class Menu {
     }
 
     public void nEncounters(int encounters) {
+        nextLine();
         promptTavernKeeper();
-        System.out.println( encounters + " encounters? That is too much for me...");
+        System.out.println("\"" + encounters + " encounters? That is too much for me...\"");
         System.out.println();
     }
 
@@ -383,7 +396,7 @@ public class Menu {
      * @param amount amount of monsters removed
      */
     public void deletedFromEncounter(String name, int amount) {
-        System.out.println(amount + " " + name + " were removed from the encounter.");
+        System.out.println("\n" + amount + " " + name + " were removed from the encounter.");
     }
     private int askOption(int min, int max) {
         int option;
@@ -445,9 +458,10 @@ public class Menu {
 
 
     public void adventureNameCorrect(String adventureName) {
+        nextLine();
         promptTavernKeeper();
-        System.out.println("You plan to undertake " + adventureName + ", really?");
-        System.out.println("How long will that take?\n");
+        System.out.println("\"You plan to undertake " + adventureName + ", really?\"");
+        System.out.println("\"How long will that take?\"\n");
     }
     public void errorNoAddedMonsters() {
         promptTavernKeeper();
@@ -469,8 +483,10 @@ public class Menu {
     }
 
     public int askPartySize(String adventureName) {
+        nextLine();
         promptTavernKeeper();
-        System.out.println(adventureName + "it is!");
+        System.out.println(adventureName + " it is!");
+        System.out.println("\"And how many people shall join you?\"\n");
 
         System.out.print("-> Choose a number of characters [3..5]: ");
         return askOption(3,5);
@@ -481,14 +497,15 @@ public class Menu {
      * @param partySize party size
      */
     public void askCharacterMessage(int partySize) {
+        nextLine();
         promptTavernKeeper();
-        System.out.println("Great, " + partySize + " it is.");
-        System.out.println("Who among these lads shall join you?\n");
+        System.out.println("\"Great, " + partySize + " it is.\"");
+        System.out.println("\"Who among these lads shall join you?\"\n");
     }
     public void startAdventure(String name) {
         promptTavernKeeper();
-        System.out.println("Great, good luck on your adventure lads!\n");
-        System.out.println("The " + name + " will start soon...");
+        System.out.println("\"Great, good luck on your adventure lads!\"\n");
+        System.out.println("The \"" + name + "\" will start soon...");
     }
     public void showParty(Party party, int actual, int size) {
         System.out.println("---------------------------");
@@ -521,7 +538,7 @@ public class Menu {
 
 
     public void titleEncounter(int i, List<Monster> monsters, int[] monstersQuantity) {
-        System.out.println("---------------------");
+        System.out.println("\n---------------------");
         System.out.println("Starting Encounter " + (i+1) +":");
         for(int j=0;j<monstersQuantity.length;j++){
             System.out.println("\t- "+monstersQuantity[j]+"x "+monsters.get(j).getName());
@@ -536,22 +553,20 @@ public class Menu {
     }
 
     public void showPreparation(List<String> gethabilities, Character[] personatges) {
-
         for(int i=0;i<personatges.length;i++){
-            System.out.println(personatges[i].getNomPersonatge() + " uses " +gethabilities.get(i) + ". Their Spirit increases in +1." );
+            System.out.println(personatges[i].getNomPersonatge() + gethabilities.get(i));
         }
-
     }
 
     public void showOrder(List<String> allParticipants, List<Integer> allInitiatives) {
-        System.out.println("Rolling initiative...");
+        System.out.println("\nRolling initiative...");
         for(int i=0;i<allParticipants.size();i++){
             System.out.println("\t- "+allInitiatives.get(i) + "\t" + allParticipants.get(i));
         }
     }
 
     public void titleCombatStage() {
-        System.out.println("--------------------");
+        System.out.println("\n--------------------");
         System.out.println("*** Combat stage ***");
         System.out.println("--------------------");
     }
@@ -579,13 +594,12 @@ public class Menu {
     }
 
     public void showRound(int round) {
-        System.out.println("Round "+round + ":");
+        System.out.println("\nRound "+round + ":");
         System.out.println("Party:");
     }
 
     public void endRound(int round){
-        System.out.println("End of round "+round +".");
-        nextLine();
+        System.out.println("\nEnd of round "+round +".");
     }
 
     public void makeAttackMonster(Monster attacker, int damageAttack, String opponent, int mult, String damageType) {
@@ -608,7 +622,7 @@ public class Menu {
             System.out.println("\"Don't worry, you are safe back at the Tavern.\"");
         }
         else{
-            System.out.println("Congratulations, your party completed \"" + name + "\"");
+            System.out.println("\nCongratulations, your party completed \"" + name + "\"");
         }
     }
 
@@ -642,5 +656,24 @@ public class Menu {
 
     public void makeCuracioDead(String nomPersonatge) {
         System.out.println(nomPersonatge + " is unconscious.");
+    }
+
+    public void finalMessageAdventureCreated(String adventureName) {
+        nextLine();
+        promptTavernKeeper();
+        System.out.println("\"Great plan lad! I hope you won't die!\"\n");
+        System.out.println("The new adventure " + adventureName + " has been created.\n");
+    }
+
+    public void notFoundPlayer() {
+        System.out.println("Haven't found any players with this name.\n");
+    }
+
+    public void badCharacter() {
+        System.out.println("\nCharacter's name not correct.");
+    }
+
+    public void alreadyBoss() {
+        System.out.println("There's already a boss in the combat.");
     }
 }

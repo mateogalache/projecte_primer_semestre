@@ -109,7 +109,7 @@ public class CharacterManager {
     public void createCharacter(String name, String playerName, int level, int body, int mind, int spirit) throws IOException{
         int xpPoints = calculateInitialLevel(level);
         CharacterDAO characterDAO = new CharacterDAO();
-        Adventurer adventurer = new Adventurer(name, playerName, xpPoints, body, mind, spirit, "adventurer");
+        Adventurer adventurer = new Adventurer(name, playerName, xpPoints, mind, body, spirit, "adventurer");
         characterDAO.addCharacterToJSON(adventurer);
     }
 

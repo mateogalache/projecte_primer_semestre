@@ -9,17 +9,6 @@ import java.util.*;
 
 public class CombatManager {
     private Combat combat;
-    private Party party;
-    private List<String> characterOrder; // sorted List of Character's name in pitch
-    private int[] characterOrderValues; // sorted array of the initiatives calculated
-    private List<String> monsterOrder;
-
-    private int[] actualLifePoints; // array that contains the actual life points of all the criatures on pitch (sorted by initiative)
-
-
-    // to get the initial party lifePoints we can check it through the party attribute (party.getLifePoints())
-    private int[] partyLifePoints; // actual party lifePoints
-
     private List<Integer> allInitiatives;
     private List<String> allParticipants;
 
@@ -27,17 +16,32 @@ public class CombatManager {
     private List<String> onlyMonsters;
     private List<Integer> onlyMonstersInitiatives;
 
-
+    /**
+     * Function to get the monsters from the json
+     * @return list of monsters
+     * @throws IOException needed to read the json
+     */
     public List<Monster> getMonsters() throws IOException {
         MonsterDAO monsterDAO = new MonsterDAO();
         return monsterDAO.readMonstersFromJson();
     }
-    public void resizeCombatQuantityLength(Combat combat, int i) {
+
+    /**
+     * Function to resize the combat quantity
+     * @param combat combat
+     * @param i number to remove of combat's quantity (-1)
+     */
+    private void resizeCombatQuantityLength(Combat combat, int i) {
         int[] auxArray = Arrays.copyOf(combat.getMonstersQuantity(), combat.getMonstersQuantity().length + i);
         combat.setMonstersQuantity(auxArray);
     }
 
-    public void removeElementFromArray(Combat combat, int index) {
+    /**
+     * Function to remove monster from a combat
+     * @param combat the combat
+     * @param index number of combat
+     */
+    private void removeElementFromArray(Combat combat, int index) {
         int[] auxArray = new int[combat.getMonstersQuantity().length];
         int j = 0;
         for (int i = 0; i < combat.getMonstersQuantity().length; i++) {
@@ -52,6 +56,11 @@ public class CombatManager {
 
     }
 
+    /**
+     * Function to get the name of the monsters from the json
+     * @return list of monsters' name
+     * @throws FileNotFoundException needed to read the json
+     */
     public List<String> listMonsterNames() throws FileNotFoundException {
         MonsterDAO monsterDAO = new MonsterDAO();
         List<Monster> monsters = monsterDAO.readMonstersFromJson();
@@ -63,6 +72,11 @@ public class CombatManager {
         return monsterNames;
     }
 
+    /**
+     * Function to list the type of monster
+     * @return list of type of the monsters
+     * @throws FileNotFoundException needed to read the json
+     */
     public List<String> listMonsterChallenges() throws FileNotFoundException {
         MonsterDAO monsterDAO = new MonsterDAO();
         List<Monster> monsters = monsterDAO.readMonstersFromJson();
@@ -75,59 +89,6 @@ public class CombatManager {
     }
 
 
-
-    public void initParty(Party party) {
-        this.party = party;
-    }
-
-
-    private void sortOrder(int[] characterValues, int[] monsterValues) {
-        List<String> names = new ArrayList<>();
-        List<Integer> values = new ArrayList<>();
-        boolean end = false;
-        int i = 0;
-        int j = 0;
-        while (!end) {
-            if (i == characterValues.length && j == monsterValues.length) {
-                end = true;
-            }  else {
-                if (i == characterValues.length) {
-                    while (j < monsterValues.length) {
-                        names.add(monsterOrder.get(j));
-                        values.add(monsterValues[j]);
-                        j++;
-                    }
-                }
-
-                else if (j == monsterValues.length) {
-                    while (i < characterValues.length) {
-                        names.add(characterOrder.get(i));
-                        values.add(characterValues[i]);
-                        i++;
-                    }
-                } else {
-                    if (characterValues[i] > monsterValues[j]) {
-                        names.add(characterOrder.get(i));
-                        values.add(characterValues[i]);
-                        i++;
-                    } else {
-                        names.add(monsterOrder.get(j));
-                        values.add(monsterValues[j]);
-                        j++;
-                    }
-                }
-
-
-            }
-        }
-        this.characterOrder = names;
-        int[] aux = new int[values.size()];
-        for (int k = 0; k < values.size(); k++) {
-            aux[k] = values.get(k);
-        }
-        this.characterOrderValues = aux;
-    }
-
     /**
      * function that returns the combat managed by the combat manager class
      * @return combat
@@ -135,9 +96,23 @@ public class CombatManager {
     public Combat getCombat() {
         return combat;
     }
+
+    /**
+     * Function to set the combat
+     * @param combat the combat
+     */
     public void setCombat(Combat combat) {
         this.combat = combat;
     }
+
+    /**
+     * Function to create a combat
+     * @param combatIndex number of combat
+     * @param monsters list of the monsters to ve added
+     * @param monsterQuantity list of the quantity of each monster
+     * @return the combat created
+     * @throws FileNotFoundException needed to read the json
+     */
     public Combat createCombat(int combatIndex, List<String> monsters, List<Integer> monsterQuantity) throws FileNotFoundException{
         MonsterDAO monsterDAO = new MonsterDAO();
         List<Monster> monsterList = new ArrayList<>();
@@ -153,6 +128,12 @@ public class CombatManager {
         return new Combat(combatIndex, monsterList, quantity);
     }
 
+    /**
+     * Function to update the list of monsters and quantity list
+     * @param index monster to remove
+     * @param monsters list of monsters
+     * @param quantity list of quantity of each monster
+     */
     public void updateCombat(int index, List<String> monsters, List<Integer> quantity) {
         // 1st Remove monster form List
         combat.getMonsters().remove(index);
@@ -165,37 +146,71 @@ public class CombatManager {
         quantity.remove(index);
     }
 
+    /**
+     * Function to calculate the initiative value of the adventurer
+     * @param spirit spirit stat
+     * @return initiative value
+     */
     public Integer calculateIniative(int spirit) {
         return throwd12() + spirit;
     }
 
+    /**
+     * Function to get random number (1-12)
+     * @return random number
+     */
     private int throwd12(){
         Dice dice = new Dice("D12",12);
         return dice.throwDice();
     }
 
+    /**
+     * Function to get a monster in the json with his name
+     * @param name name of the monster
+     * @return the monster
+     * @throws FileNotFoundException needed to read the json
+     */
     public Monster getMonsterByName(String name) throws FileNotFoundException {
         MonsterDAO monsterDAO = new MonsterDAO();
         return monsterDAO.getMonster(name);
     }
 
+    /**
+     * Function to calculate the attack of the monster
+     * @param attacker monster that attacks
+     * @return random number depending on the damage dice of the monster
+     */
     public int calculateMonsterAttack(Monster attacker) {
         int n = Integer.parseInt(attacker.getDamageDice().substring(1));
         Dice dice = new Dice(attacker.getDamageDice(),n);
         return dice.throwDice();
     }
 
+    /**
+     * Function to know the multiplier of the attack
+     * @return random number (1-10)
+     */
     private int diceCombatAttack() {
         Dice dice = new Dice("d10",10);
         return dice.throwDice();
     }
 
+    /**
+     * Function to get random number with number of the party
+     * @param size size of the paryy
+     * @return random number to know who the monster is attacking
+     */
     public int randomAttack(int size) {
         String sDice = "d" + size;
         Dice dice = new Dice(sDice,size);
         return dice.throwDice();
     }
 
+    /**
+     * Function to order ALL the participants of the combat depending on initiative
+     * @param party party of the adventure
+     * @param combat the combat
+     */
     public void orderAllParticipants(Party party, Combat combat) {
         allInitiatives = new ArrayList<>();
         allParticipants = new ArrayList<>();
@@ -229,13 +244,26 @@ public class CombatManager {
         }
     }
 
+    /**
+     * Function to get the initiatives
+     * @return list of the initiatives
+     */
     public List<Integer> getAllInitiatives(){
         return allInitiatives;
     }
+
+    /**
+     * Function to get ALL participants of the combat
+     * @return list of the participants
+     */
     public List<String> getAllParticipants(){
         return allParticipants;
     }
 
+    /**
+     * Function to order ONLY the monsters of the combat
+     * @param combat the combat
+     */
     public void orderMonsters(Combat combat){
         onlyMonsters = new ArrayList<>();
         onlyMonstersInitiatives = new ArrayList<>();
@@ -269,16 +297,26 @@ public class CombatManager {
         }
     }
 
+    /**
+     * Function to get the list of the monsters ordered
+     * @return list of monsters of the combat
+     */
     public List<String> getOnlyMonsters(){
         return onlyMonsters;
     }
+
+    /**
+     * Function to get actual life of monsters
+     * @return list of the life of each monster of the combat
+     */
     public List<Integer> getActualLifeMonsters(){
         return actualLifeMonsters;
     }
-    public List<Integer> getOnlyMonstersInitiatives(){
-        return onlyMonstersInitiatives;
-    }
 
+    /**
+     * Function to calculate the multiplier of the attack
+     * @return the multiplier
+     */
     public int calculateMultiplier() {
         int mult = 1;
         if(diceCombatAttack() < 2){
@@ -289,6 +327,12 @@ public class CombatManager {
         return mult;
     }
 
+    /**
+     * Function to get the actual life of a character in the party
+     * @param party the party
+     * @param attacker character to attack
+     * @return actual life
+     */
     public int getActualLife(Party party,Character attacker){
         int n = 0;
         for(int i=0;i<party.getPersonatges().length;i++){
@@ -299,6 +343,11 @@ public class CombatManager {
         return party.getPersonatges()[n].getActualLifePoints();
     }
 
+    /**
+     * Function to get the monster to be attacked(monster with less life)
+     * @param actualLifeMonsters actual life of each monster
+     * @return index of the monster to be attacked
+     */
     public int monsterToBeAttacked(List<Integer> actualLifeMonsters) {
         int life=0,index=0;
         for(int i=0;i<actualLifeMonsters.size();i++){

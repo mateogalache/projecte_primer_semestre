@@ -17,11 +17,6 @@ public class Controller {
     private static final int MAX_ERRORS = 3;
     private Menu menu;
 
-    private static final String CHARACTERS_FILE_NAME = "characters.json";
-    private static final String MONSTERS_FILE_NAME = "monsters.json";
-    private static final String ADVENTURES_FILE_NAME = "adventures.json";
-
-
     /**
      * Function to run the progam
      */
@@ -35,24 +30,26 @@ public class Controller {
                 int option;
                 menu.dataSuccesfull();
                 do{
-                    menu.showMenu();
-                    do{
-                        option = menu.askOption();
-                    }while(option > 5);
                     CharacterManager characterManager = new CharacterManager();
+                    int num_chararcters = characterManager.getAllCharacters().size();
+                    menu.showMenu(num_chararcters);
+                    if(num_chararcters < 3){
+                        do{
+                            option = menu.askOption();
+                        }while(option > 5 || option < 1 || option == 4);
+                    }else{
+                        do{
+                            option = menu.askOption();
+                        }while(option > 5 || option < 1);
+                    }
+
                     switchOperation(option,characterManager);
                 }while(option != 5);
 
             }catch (IOException e) {
-
+                e.getMessage();
             }
-
-
-
         }
-
-
-
     }
 
     /**
@@ -102,9 +99,15 @@ public class Controller {
                     nameCharacter = characterManager.getAllCharacters().get(menu.meetCharacter(size)-1);
                 }else{
                     List<String> someCharacters = characterManager.getCharactersFromPlayer(player);
-                    size = someCharacters.size();
-                    menu.showSomeCharacters(someCharacters);
-                    nameCharacter = someCharacters.get(menu.meetCharacter(size)-1);
+                    if (someCharacters != null){
+                        size = someCharacters.size();
+                        menu.showSomeCharacters(someCharacters);
+                        nameCharacter = someCharacters.get(menu.meetCharacter(size)-1);
+                    }else{
+                        menu.notFoundPlayer();
+                        break;
+                    }
+
                 }
 
                 Character selectedCharacted = characterManager.getCharacterFromIndex(nameCharacter);
@@ -131,27 +134,33 @@ public class Controller {
                         AdventureManager adventureManager = new AdventureManager();
 
                         createAdventure(adventureName, adventureManager, encounters);
+                        menu.finalMessageAdventureCreated(adventureName);
                     }
                 } else {
                     // show error message and exit
                     menu.adventureNameNotAble();
                 }
+                menu.nextLine();
                 break;
             case 4:
                 AdventureManager adventureManager = new AdventureManager();
 
-                int index = menu.playAdventureMenu(adventureManager.getAdventureNames()) -1; // ask the adventure we are going to play
+                if(adventureManager.getAdventures().size() > 0){
+                    int index = menu.playAdventureMenu(adventureManager.getAdventureNames()) -1; // ask the adventure we are going to play
 
-                // 1st init party
-                int partySize = menu.askPartySize(adventureManager.getAdventures().get(index).getName()); // ask the size of the party
-                menu.askCharacterMessage(partySize);
-                createParty(partySize, characterManager, adventureManager);
+                    // 1st init party
+                    int partySize = menu.askPartySize(adventureManager.getAdventures().get(index).getName()); // ask the size of the party
+                    menu.askCharacterMessage(partySize);
+                    createParty(partySize, characterManager, adventureManager);
 
-                // 2nd start to play the Adventure
-                Adventure adventure = adventureManager.getAdventures().get(index);
-                menu.startAdventure(adventure.getName());
-                playAdventure(adventure,adventureManager,characterManager);
-                menu.nextLine();
+                    // 2nd start to play the Adventure
+                    Adventure adventure = adventureManager.getAdventures().get(index);
+                    menu.startAdventure(adventure.getName());
+                    playAdventure(adventure,adventureManager,characterManager);
+                    menu.nextLine();
+                } else{
+                    System.out.println("\nNo adventures available, create an adventure first.\n");
+                }
                 break;
             case 5:
                 menu.finalMessage();
@@ -382,13 +391,23 @@ public class Controller {
      */
     private boolean askToDeleteCharacter(String nomPersonatge) {
         boolean answer = false;
-        String response = menu.askToDeleteCharacter(nomPersonatge);
+        String response;
+        response = menu.askToDeleteCharacter(nomPersonatge);
+        String nomPersonatge0;
+
 
         // To make the program case Insensitive, we pass both strings to UpperCase
         response = response.toUpperCase();
-        nomPersonatge = nomPersonatge.toUpperCase();
+        nomPersonatge0 = nomPersonatge.toUpperCase();
 
-        if (response.equals(nomPersonatge)) {
+        while(!response.equals("") && !response.equals(nomPersonatge0)){
+            menu.badCharacter();
+            response = menu.askToDeleteCharacter(nomPersonatge);
+            response = response.toUpperCase();
+            nomPersonatge0 = nomPersonatge.toUpperCase();
+        }
+
+        if (response.equals(nomPersonatge0)) {
             answer = true;
         }
 
@@ -445,7 +464,7 @@ public class Controller {
         boolean empty = true;
         int option = 0;
         // while we don't want to stop adding/removing monsters || we haven't add any monster
-        while (option != 3 || combatManager.getCombat().getMonsters().isEmpty()) {
+        while (option != 3 || empty) {
             menu.encounterMenu(combatIndex+1, encounters, monsters, monsterQuantity);
             option = menu.combatManagerMenu();
             switch (option) {
@@ -460,7 +479,6 @@ public class Controller {
                     if (add) {
                         // after ask monster quantity
                         int monsterAmount = menu.askMonsterQuantity(combatManager.getMonsters().get(monsterIndex).getName());
-                        int length = monsterQuantity.size();
 
                         addMonsterQuantityToCombat(monsterQuantity, monsters, monsterIndex, monsterAmount, combatManager);
 
@@ -477,7 +495,7 @@ public class Controller {
                         // Error: You haven't added monsters already
                         menu.errorNoAddedMonsters();
                     } else {
-                        menu.encounterMenu(combatIndex+1, encounters, monsters, monsterQuantity);
+                        //menu.encounterMenu(combatIndex+1, encounters, monsters, monsterQuantity);
                         int index = menu.askMonsterQuantity(combatManager.getCombat().getMonsters().size()) - 1;
                         menu.deletedFromEncounter(combatManager.getCombat().getMonsters().get(index).getName(), combatManager.getCombat().getMonstersQuantity()[index]);
                         // combatManager.setCombat(combatManager.); //= updateEncounter(combat);
@@ -523,13 +541,17 @@ public class Controller {
             for (int i = 0; i < monsterQuantity.size(); i++) {
                 if (monsterName.equals(monsters.get(i))) {
                     found = true;
-                    // update the QuantityList
                     monsterQuantity.set(i,monsterQuantity.get(i) + monsterAmount);
                 }
             }
 
             if (!found) {
                 monsterQuantity.add(monsterAmount);
+            }
+
+            if(combatManager.getMonsterByName(monsterName).getChallenge().equals("Boss")){
+                menu.alreadyBoss();
+                monsterQuantity.set(monsterQuantity.size()-1,1);
             }
 
 
@@ -542,19 +564,42 @@ public class Controller {
      * @return boolean (true = the mosnter haven't been added yet).
      * @throws FileNotFoundException needed to read the json
      */
-    private boolean addMonstersToCombat(List<String> monsters, int monsterIndex) throws FileNotFoundException{
+    private boolean addMonstersToCombat(List<String> monsters, int monsterIndex) throws IOException {
         // Variables:
         CombatManager combatManager = new CombatManager();
-        boolean boss;
+        boolean isBoss  = false;
         boolean add = true;
         // now check either it's or not a boss
-
-        // now check that it don't exist already
-        if (monsters.contains(combatManager.listMonsterNames().get(monsterIndex)) == FALSE) {
-            monsters.add(combatManager.listMonsterNames().get(monsterIndex));
+        if(combatManager.getMonsterByName(combatManager.getMonsters().get(monsterIndex).getName()).getChallenge().equals("Boss")) {
+            isBoss = alreadyBoss(monsters,combatManager);
         }
 
+
+        if(isBoss){
+            menu.alreadyBoss();
+            add = false;
+        }else{
+            // now check that it don't exist already
+            if (monsters.contains(combatManager.listMonsterNames().get(monsterIndex)) == FALSE) {
+                monsters.add(combatManager.listMonsterNames().get(monsterIndex));
+            }
+        }
+
+
         return add;
+    }
+
+    private boolean alreadyBoss(List<String> monsters, CombatManager combatManager) throws IOException {
+        boolean isboss = false;
+
+        for (String monster : monsters) {
+            if (combatManager.getMonsterByName(monster).getChallenge().equals("Boss")) {
+                isboss = true;
+                break;
+            }
+        }
+
+        return isboss;
     }
 
     /**

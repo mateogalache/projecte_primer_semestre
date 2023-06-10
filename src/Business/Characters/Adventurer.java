@@ -1,6 +1,16 @@
 package Business.Characters;
 
 public class Adventurer extends Character {
+    /**
+     * Constructor of the class adventurer
+     * @param nomPersonatge name of the character
+     * @param nomJugador name of the player
+     * @param xpPoints experience points of the character
+     * @param mind mind stat
+     * @param body body stat
+     * @param spirit spirit stat
+     * @param tipusPersonatge character class
+     */
     public Adventurer(String nomPersonatge, String nomJugador, int xpPoints, int mind, int body, int spirit, String tipusPersonatge) {
         super(nomPersonatge, nomJugador, xpPoints, mind, body, spirit, tipusPersonatge);
     }
@@ -14,12 +24,14 @@ public class Adventurer extends Character {
 
     }
 
-    public String getPreparationHability() {
-        return "Their spirit increases in +";
-    }
+
+    /**
+     * Function to get preparation action
+     * @return string of the action
+     */
     @Override
 
     public String preparationAction() {
-        return "Self-motivated";
+        return " uses Self-motivated. Their Spirit increases in +1.";
     }
 }

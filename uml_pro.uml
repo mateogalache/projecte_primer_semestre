@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/mateo/IdeaProjects/projecte_primer_semestre/src</OriginalElement>
+  <nodes>
+    <node x="138.4426567656766" y="3521.0">Presentation.Controller</node>
+    <node x="1019.0313531353136" y="863.0">Business.Adventure</node>
+    <node x="392.1926567656767" y="907.5">Business.Dice</node>
+    <node x="993.4946369636964" y="2489.0">Business.AdventureManager</node>
+    <node x="114.5" y="1247.5">Business.CharacterManager</node>
+    <node x="456.9480198019802" y="633.0">Persistance.MonsterDAO</node>
+    <node x="450.4480198019802" y="1093.0">Business.CombatManager</node>
+    <node x="1171.2813531353136" y="588.0">Business.Party</node>
+    <node x="721.871287128713" y="73.5">Business.Monster</node>
+    <node x="-89.0" y="1830.0">Presentation.Menu</node>
+    <node x="81.94265676567659" y="632.5">Business.Characters.Adventurer</node>
+    <node x="810.4480198019801" y="1336.0">Persistance.AdventureDAO</node>
+    <node x="22.44265676567659" y="863.5">Persistance.CharacterDAO</node>
+    <node x="737.9480198019802" y="599.5">Business.Combat</node>
+    <node x="1064.621287128713" y="-15.0">Business.Characters.Character</node>
+    <node x="277.4426567656766" y="4000.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Business.AdventureManager" target="Persistance.AdventureDAO" relationship="CREATE">
+      <point x="-134.5" y="-160.5" />
+      <point x="49.04661716171631" y="93.5" />
+    </edge>
+    <edge source="Business.CombatManager" target="Business.Combat" relationship="TO_ONE">
+      <point x="169.99998019801978" y="214.5" />
+      <point x="1277.0" y="1644.0" />
+      <point x="1277.0" y="1318.5" />
+      <point x="852.448" y="1318.5" />
+      <point x="-1.9801980215561343E-5" y="94.0" />
+    </edge>
+    <edge source="Business.Combat" target="Business.Monster" relationship="TO_MANY">
+      <point x="37.422980198019786" y="-94.0" />
+      <point x="14.999712871286988" y="182.0" />
+    </edge>
+    <edge source="Main" target="Presentation.Controller" relationship="CREATE">
+      <point x="-0.0" y="-38.5" />
+      <point x="-0.0" y="214.5" />
+    </edge>
+    <edge source="Business.Party" target="Business.Characters.Character" relationship="TO_MANY">
+      <point x="-87.66006600660057" y="-105.5" />
+      <point x="-15.0" y="270.5" />
+    </edge>
+    <edge source="Business.AdventureManager" target="Business.Party" relationship="CREATE">
+      <point x="142.0" y="-0.0" />
+      <point x="1324.9946369636964" y="2649.5" />
+      <point x="39.71328382838283" y="105.5" />
+    </edge>
+    <edge source="Business.AdventureManager" target="Business.Adventure" relationship="CREATE">
+      <point x="-49.5466369636963" y="-160.5" />
+      <point x="1085.948" y="1758.5" />
+      <point x="1114.0" y="1758.5" />
+      <point x="1114.0" y="1303.5" />
+      <point x="1135.495" y="1303.5" />
+      <point x="1.963646864686325" y="83.0" />
+    </edge>
+    <edge source="Business.CharacterManager" target="Business.Dice" relationship="CREATE">
+      <point x="-0.0" y="-182.0" />
+      <point x="271.5" y="1155.0" />
+      <point x="427.5" y="1155.0" />
+      <point x="-31.692656765676702" y="38.5" />
+    </edge>
+    <edge source="Persistance.AdventureDAO" target="Business.Monster" relationship="CREATE">
+      <point x="74.58298019801987" y="-93.5" />
+      <point x="1026.531" y="1303.5" />
+      <point x="992.0" y="1303.5" />
+      <point x="992.0" y="542.0" />
+      <point x="874.871" y="542.0" />
+      <point x="-2.8712871301195264E-4" y="182.0" />
+    </edge>
+    <edge source="Business.CharacterManager" target="Business.Characters.Adventurer" relationship="CREATE">
+      <point x="15.0" y="-182.0" />
+      <point x="286.5" y="1170.0" />
+      <point x="344.0" y="1170.0" />
+      <point x="344.0" y="846.0" />
+      <point x="233.943" y="846.0" />
+      <point x="3.432343234237578E-4" y="61.0" />
+    </edge>
+    <edge source="Persistance.CharacterDAO" target="Business.Characters.Adventurer" relationship="CREATE">
+      <point x="137.5003432343234" y="-0.0" />
+      <point x="344.0" y="946.0" />
+      <point x="344.0" y="846.0" />
+      <point x="233.943" y="846.0" />
+      <point x="3.432343234237578E-4" y="61.0" />
+    </edge>
+    <edge source="Presentation.Controller" target="Business.CombatManager" relationship="CREATE">
+      <point x="206.0" y="-214.5" />
+      <point x="-62.505363036303606" y="336.5" />
+    </edge>
+    <edge source="Business.AdventureManager" target="Business.Party" relationship="TO_ONE">
+      <point x="142.0" y="-15.0" />
+      <point x="1309.9946369636964" y="2634.5" />
+      <point x="24.713283828382828" y="105.5" />
+    </edge>
+    <edge source="Business.Characters.Adventurer" target="Business.Characters.Character" relationship="GENERALIZATION">
+      <point x="0.0" y="-61.0" />
+      <point x="233.9426567656766" y="557.0" />
+      <point x="1113.9546204620463" y="557.0" />
+      <point x="-98.66666666666669" y="270.5" />
+    </edge>
+    <edge source="Business.CombatManager" target="Business.Combat" relationship="CREATE">
+      <point x="169.99998019801978" y="-329.0" />
+      <point x="821.0" y="1100.5" />
+      <point x="821.0" y="1062.0" />
+      <point x="792.948" y="1062.0" />
+      <point x="-59.500019801980216" y="94.0" />
+    </edge>
+    <edge source="Business.Party" target="Business.Characters.Character" relationship="CREATE">
+      <point x="-72.66006600660057" y="-105.5" />
+      <point x="-0.0" y="270.5" />
+    </edge>
+    <edge source="Persistance.AdventureDAO" target="Business.Combat" relationship="CREATE">
+      <point x="-1.9801980101874506E-5" y="-93.5" />
+      <point x="951.948" y="1062.0" />
+      <point x="792.948" y="1062.0" />
+      <point x="-59.500019801980216" y="94.0" />
+    </edge>
+    <edge source="Business.CombatManager" target="Persistance.MonsterDAO" relationship="CREATE">
+      <point x="-33.0" y="-336.5" />
+      <point x="-0.0" y="60.5" />
+    </edge>
+    <edge source="Persistance.AdventureDAO" target="Business.Adventure" relationship="CREATE">
+      <point x="141.49998019802" y="-0.0" />
+      <point x="1114.0" y="1429.5" />
+      <point x="1114.0" y="1303.5" />
+      <point x="1135.495" y="1303.5" />
+      <point x="1.963646864686325" y="83.0" />
+    </edge>
+    <edge source="Presentation.Controller" target="Presentation.Menu" relationship="CREATE">
+      <point x="-206.0" y="-214.5" />
+      <point x="59.94265676567659" y="819.5" />
+    </edge>
+    <edge source="Business.Adventure" target="Business.Combat" relationship="TO_MANY">
+      <point x="114.49964686468638" y="-0.0" />
+      <point x="1277.0" y="946.0" />
+      <point x="1277.0" y="1318.5" />
+      <point x="852.448" y="1318.5" />
+      <point x="-1.9801980215561343E-5" y="94.0" />
+    </edge>
+    <edge source="Business.AdventureManager" target="Business.Combat" relationship="TO_MANY">
+      <point x="3.630363034972106E-4" y="-160.5" />
+      <point x="1135.495" y="1644.0" />
+      <point x="1277.0" y="1644.0" />
+      <point x="1277.0" y="1318.5" />
+      <point x="852.448" y="1318.5" />
+      <point x="-1.9801980215561343E-5" y="94.0" />
+    </edge>
+    <edge source="Presentation.Controller" target="Presentation.Menu" relationship="TO_ONE">
+      <point x="-191.0" y="-214.5" />
+      <point x="74.94265676567659" y="819.5" />
+    </edge>
+    <edge source="Presentation.Controller" target="Business.AdventureManager" relationship="CREATE">
+      <point x="213.5" y="15.0" />
+      <point x="1135.4946369636964" y="3750.5" />
+      <point x="-0.0" y="160.5" />
+    </edge>
+    <edge source="Business.AdventureManager" target="Business.CharacterManager" relationship="CREATE">
+      <point x="-141.9996369636964" y="-0.0" />
+      <point x="692.0" y="2649.5" />
+      <point x="692.0" y="2881.0" />
+      <point x="278.5" y="2881.0" />
+      <point x="7.0" y="182.0" />
+    </edge>
+    <edge source="Business.CharacterManager" target="Persistance.CharacterDAO" relationship="CREATE">
+      <point x="-111.55734323432341" y="-182.0" />
+      <point x="-0.0" y="82.5" />
+    </edge>
+    <edge source="Persistance.MonsterDAO" target="Business.Monster" relationship="CREATE">
+      <point x="-1.9801980215561343E-5" y="-60.5" />
+      <point x="587.448" y="582.0" />
+      <point x="992.0" y="582.0" />
+      <point x="992.0" y="542.0" />
+      <point x="874.871" y="542.0" />
+      <point x="-2.8712871301195264E-4" y="182.0" />
+    </edge>
+    <edge source="Business.CombatManager" target="Business.Dice" relationship="CREATE">
+      <point x="-170.00001980198022" y="-294.0" />
+      <point x="427.5" y="1135.5" />
+      <point x="-31.692656765676702" y="38.5" />
+    </edge>
+    <edge source="Presentation.Controller" target="Business.CharacterManager" relationship="CREATE">
+      <point x="213.5003432343234" y="-0.0" />
+      <point x="692.0" y="3735.5" />
+      <point x="692.0" y="2881.0" />
+      <point x="278.5" y="2881.0" />
+      <point x="7.0" y="182.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.5777487953311593" showDependencies="true" x="343.7193999874925" y="1142.4628983456914" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

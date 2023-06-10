@@ -15,6 +15,11 @@ import java.util.List;
 public class CharacterDAO {
     private static final String PATH = "Files/characters.json";
 
+    /**
+     * Function to read the characters in the json
+     * @return list of characters
+     * @throws FileNotFoundException needed to write/read the json
+     */
     public List<Character> readCharactersFromJson() throws FileNotFoundException {
         JsonElement fileElement = JsonParser.parseReader(new FileReader(PATH));
         //JsonObject fileObject = fileElement.getAsJsonObject();
@@ -32,6 +37,11 @@ public class CharacterDAO {
         return personatges;
     }
 
+    /**
+     * Function to read ONE character
+     * @param characterElement character element
+     * @return the character
+     */
     private Character readPersonatge(JsonElement characterElement) {
         // get Json Object
         JsonObject characterObject = characterElement.getAsJsonObject();
@@ -48,6 +58,11 @@ public class CharacterDAO {
         return new Adventurer(name,player,xp,mind,body,spirit,type);
     }
 
+    /**
+     * Function to add a character to the json
+     * @param character the character to be added
+     * @throws IOException needed to write/read the json
+     */
     public void addCharacterToJSON(Character character) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -61,7 +76,12 @@ public class CharacterDAO {
         fw.close();
     }
 
-
+    /**
+     * Function to get ONE character depending on his name
+     * @param name name of the character
+     * @return the character
+     * @throws FileNotFoundException needed to write/read the json
+     */
     public Character getCharacter(String name) throws FileNotFoundException {
         List<Character> personatges = readCharactersFromJson();
 
@@ -77,6 +97,11 @@ public class CharacterDAO {
         return characterToReturn;
     }
 
+    /**
+     * Function to delete a character from the json
+     * @param personatge the charcter to be deleted
+     * @throws IOException needed to write/read the json
+     */
     public void deleteCharacterFromJSON(Character personatge) throws IOException {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

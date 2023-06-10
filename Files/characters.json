@@ -1,29 +1,5 @@
 [
   {
-    "name": "Amrod",
-    "player": "SonsOfFeanor",
-    "xp": 295,
-    "body": 2,
-    "mind": 0,
-    "spirit": 0,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
-  },
-  {
-    "name": "Caranthir",
-    "player": "SonsOfFeanor",
-    "xp": 306,
-    "body": 2,
-    "mind": 0,
-    "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
-  },
-  {
     "name": "Curufin",
     "player": "SonsOfFeanor",
     "xp": 286,
@@ -108,18 +84,6 @@
     "totalLifePoints": 0
   },
   {
-    "name": "Luke Skywalker",
-    "player": "Lucas Films",
-    "xp": 329,
-    "body": -1,
-    "mind": 0,
-    "spirit": -1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
-  },
-  {
     "name": "Maedhros",
     "player": "SonsOfFeanor",
     "xp": 348,
@@ -132,36 +96,12 @@
     "totalLifePoints": 0
   },
   {
-    "name": "Niënor Níniel",
-    "player": "Eru Ilúvatar",
-    "xp": 148,
-    "body": 3,
-    "mind": 0,
-    "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
-  },
-  {
     "name": "Percival Fredrickstein von Musel Klossowski de Rolo III",
     "player": "Critter9",
     "xp": 499,
     "body": 1,
     "mind": -1,
     "spirit": 1,
-    "class": "adventurer",
-    "conscient": false,
-    "actualLifePoints": 0,
-    "totalLifePoints": 0
-  },
-  {
-    "name": "Túrin Turambar",
-    "player": "Eru Ilúvatar",
-    "xp": 292,
-    "body": 1,
-    "mind": 2,
-    "spirit": 2,
     "class": "adventurer",
     "conscient": false,
     "actualLifePoints": 0,
@@ -186,6 +126,30 @@
     "body": 1,
     "mind": 2,
     "spirit": 1,
+    "class": "adventurer",
+    "conscient": false,
+    "actualLifePoints": 0,
+    "totalLifePoints": 0
+  },
+  {
+    "name": "Matreo",
+    "player": "Mateo",
+    "xp": 900,
+    "body": 1,
+    "mind": 1,
+    "spirit": 1,
+    "class": "adventurer",
+    "conscient": false,
+    "actualLifePoints": 0,
+    "totalLifePoints": 0
+  },
+  {
+    "name": "Mateoelmejor",
+    "player": "Eru Ilúvatar",
+    "xp": 200,
+    "body": 2,
+    "mind": 1,
+    "spirit": 0,
     "class": "adventurer",
     "conscient": false,
     "actualLifePoints": 0,

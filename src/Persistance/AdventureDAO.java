@@ -12,6 +12,12 @@ import java.util.List;
 public class AdventureDAO {
     private static final String PATH = "Files/adventures.json";
 
+    /**
+     * Function to init the file
+     * @return the json element
+     * @throws IOException needed to write/read the json
+     * @throws FileNotFoundException needed to write/read the json
+     */
     private JsonElement initFile() throws IOException, FileNotFoundException{
         File file = new File(PATH);
         if (!file.exists()) {
@@ -21,6 +27,12 @@ public class AdventureDAO {
         return JsonParser.parseReader(new FileReader(PATH));
     }
 
+    /**
+     * Function to read the adventures from the json
+     * @return List of adventures
+     * @throws FileNotFoundException needed to write/read the json
+     * @throws IllegalAccessError needed to write/read the json
+     */
     public List<Adventure> readAdventuresFromJson() throws FileNotFoundException, IllegalAccessError {
         JsonElement fileElement = JsonParser.parseReader(new FileReader(PATH));
 
@@ -43,6 +55,13 @@ public class AdventureDAO {
         }
     }
 
+    /**
+     * Function to read ONE adventure
+     * @param adventureElement adventure to be read
+     * @return the adventure
+     * @throws FileNotFoundException needed to write/read the json
+     * @throws IllegalAccessError needed to write/read the json
+     */
     private Adventure readAdventure(JsonElement adventureElement) throws FileNotFoundException, IllegalAccessError {
 
         // get Json Object
@@ -63,6 +82,11 @@ public class AdventureDAO {
         return new Adventure(name, combats);
     }
 
+    /**
+     * Function to read a combat
+     * @param combatElement combat
+     * @return the combat
+     */
     private Combat readCombat(JsonElement combatElement) {
         JsonObject combatObject = combatElement.getAsJsonObject();
 
@@ -84,6 +108,11 @@ public class AdventureDAO {
         return new Combat(combatNumber, monsters, quantity);
     }
 
+    /**
+     * Function to read a monster
+     * @param monsterElement monster element
+     * @return the monster
+     */
     private Monster readMonster(JsonElement monsterElement) {
         JsonObject monsterObject = monsterElement.getAsJsonObject();
 
@@ -98,7 +127,11 @@ public class AdventureDAO {
         return new Monster(name, challenge, experience, hitPoints, initiative, damageDice, damageType);
     }
 
-
+    /**
+     * Function to add a new adventure to the json
+     * @param adventure adventure to be add
+     * @throws IOException needed to write/read the json
+     */
     public void addAdventuretoJSON(Adventure adventure) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

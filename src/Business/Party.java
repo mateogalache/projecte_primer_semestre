@@ -10,8 +10,6 @@ public class Party {
     private Character[] personatges;
     private boolean[] conscient;
 
-    private int[] lifePoints;
-
     /**
      * Function that creates the party depending on the size
      * @param size size of the party
@@ -29,14 +27,20 @@ public class Party {
         return personatges;
     }
 
-    public void setPersonatges(Character[] personatges) {
-        this.personatges = personatges;
-    }
-
+    /**
+     * Function to set a character
+     * @param personatge chracter
+     * @param index index in the party
+     */
     public void setPersonatge(Character personatge, int index) {
         this.personatges[index] = personatge;
     }
 
+    /**
+     * Function to set if a character is conscient in the party
+     * @param index index in the party
+     * @param state state of the character (conscient or not)
+     */
     public void setConscient(int index, boolean state) {this.conscient[index] = state;}
 
     /**
@@ -47,6 +51,10 @@ public class Party {
         return conscient;
     }
 
+    /**
+     * Function to get the list of habilities of the characters in the party
+     * @return list of habilities
+     */
     public List<String> gethabilities() {
         List<String > habilities = new ArrayList<>();
 
@@ -56,6 +64,8 @@ public class Party {
 
         return habilities;
     }
+
+
 
 
 

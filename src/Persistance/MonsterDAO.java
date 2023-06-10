@@ -14,6 +14,12 @@ import java.util.List;
 public class MonsterDAO {
 
     private static final String PATH = "Files/monsters.json";
+
+    /**
+     * Function to read the monsters from the json
+     * @return list of monsters
+     * @throws FileNotFoundException needed to write/read the json
+     */
     public List<Monster> readMonstersFromJson() throws FileNotFoundException {
         JsonElement fileElement = JsonParser.parseReader(new FileReader(PATH));
 
@@ -32,6 +38,11 @@ public class MonsterDAO {
         return monsters;
     }
 
+    /**
+     * Function to read ONE mosnter
+     * @param monsterElement monster element
+     * @return the monster
+     */
     private Monster readMonster(JsonElement monsterElement) {
         // get Json Object
         JsonObject monsterObject = monsterElement.getAsJsonObject();
@@ -48,6 +59,13 @@ public class MonsterDAO {
         return new Monster(name, challenge, experience, hitPoints, initiative, damageDice, damageType);
 
     }
+
+    /**
+     * Function to get one monster depening on his name
+     * @param monsterName monster's name
+     * @return the monster
+     * @throws FileNotFoundException needed to write/read the json
+     */
     public Monster getMonster(String monsterName) throws FileNotFoundException{
         List<Monster> monsters = readMonstersFromJson();
         int index = 0;
